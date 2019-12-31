@@ -23,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
+        <docker.image.prefix>mydeveloperplanet</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -46,6 +47,28 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>1.8.0</version>
+                <configuration>
+                    <!-- openjdk:11.0.5-jre -->
+                    <from>
+                        <image>openjdk@sha256:b3e19d27caa8249aad6f90c6e987943d03e915bbf3a66bc1b7f994a4fed668f6</image>
+                    </from>
+                    <to>
+                        <image>docker.io/${docker.image.prefix}/${project.artifactId}</image>
+                        <!--credHelper>pass</credHelper-->
+                        <tags>
+                            <tag>${project.version}</tag>
+                        </tags>
+                    </to>
+                    <container>
+                        <mainClass>com.mydeveloperplanet.myskaffoldplanet.MySkaffoldPlanetApplication</mainClass>
+                        <user>nobody</user>
+                    </container>
+                </configuration>
             </plugin>
         </plugins>
     </build>
