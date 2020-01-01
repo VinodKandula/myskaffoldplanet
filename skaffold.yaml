@@ -3,11 +3,9 @@ kind: Config
 metadata:
   name: myskaffoldplanet
 build:
-  local:
-    push: false
   artifacts:
-    - image: docker.io/mydeveloperplanet/myskaffoldplanet
-      jib: {}
+  - image: docker.io/mydeveloperplanet/myskaffoldplanet
+    jib: {}
 deploy:
   kubectl:
     manifests:
